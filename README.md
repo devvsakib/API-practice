@@ -9,3 +9,6 @@
 
 ### P7a
 [P7a](https://devvsakib.github.io/API-practice/p7a)
+
+### P7a: Find GitHub user details
+[P7b](https://devvsakib.github.io/API-practice/p7b)
