@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head data-theme="dracula">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rest Countries API">
+    <meta name="keywords" content="Rest Countries API">
+    <meta name="author" content="DevvSakib">
+    <title>DevvSakib</title>
+    <script defer src="practice.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="grid justify-center h-[100vh] w-[100vw]">
+    <div>
+        <div class="overflow-x-auto w-full">
+            <div class=" flex gap-4">
+                <select class="select select-info w-full max-w-xs text-center" id="selector">
+                    <option disabled selected>Select Region</option>
+                    <option value="All">All</option>
+                    <option value="America">America</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                </select>
+                <select class="select select-info w-full max-w-xs text-center" id="selectorLang">
+                    <option disabled selected>Language</option>
+                </select>
+            </div>
+            <table class="table w-[90vw]">
+                <!-- head -->
+                <thead>
+                    <tr>
+                        <th>Flag</th>
+                        <th>Name</th>
+                        <th>Region</th>
+                        <th>Cpital</th>
+                        <th>Language</th>
+                    </tr>
+                </thead>
+                <tbody id="countryDiv">
+                    <tr id="loading"><td>🔃Loading...</td></tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- DevvSakib GITHUBL: github.com/devvsakib -->
