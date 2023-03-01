@@ -1,7 +1,7 @@
 const username = document.getElementById("username")
 const allB = "./api/AllBillionaires.json"
 const richest = "./api/Richest_People_API.json"
-
+let sort;
 // const getUserName = prompt("Please enter username first to continue: ")
 // if (getUserName === null || getUserName === "") {
 //     alert("Please enter a valid username")
@@ -27,8 +27,10 @@ function showTopRich(data, all) {
     const sliceData = data.slice(0, 5)
     const conditionData = all ? data : sliceData
     document.getElementById("tableBody").innerHTML = ""
-    for (const person of conditionData) {
-        document.getElementById("tableBody").innerHTML += `
+    const sortData = sortByNames(conditionData)
+    if (!sortData) {
+        for (const person of conditionData) {
+            document.getElementById("tableBody").innerHTML += `
         
         <tr>
             <td class="break-words whitespace-normal">
@@ -58,6 +60,40 @@ function showTopRich(data, all) {
             </th>
         </tr>                        
         `
+        }
+    } else {
+        for (const person of conditionData) {
+            document.getElementById("tableBody").innerHTML += `
+            
+            <tr>
+                <td class="break-words whitespace-normal">
+                    <div class="flex items-center space-x-3">
+                        <div class="avatar">
+                            <div class="mask mask-squircle w-12 h-12">
+                                <img src="${person.person.squareImage.slice(0, 6) === "https:" ? person.person.squareImage : "https:" + person.person.squareImage.slice(1)}"
+                                    alt="Avatar" />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="font-bold flex"><h2>${person.person.name}</h2> <label for="my-modal-3" onclick="showDetails(${person.rank})"><i class="fa fa-eye cursor-pointer ml-2" aria-hidden="true"></i></label></div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    ${person.countryOfCitizenship}
+                </td>
+                <td>
+                ${person.industries[0]}
+                </td>
+                <td>
+                ${person.rank}
+                </td>
+                <th>
+                    $<span>${person.finalWorth}</span>
+                </th>
+            </tr>                        
+            `
+        }
     }
 }
 
@@ -132,12 +168,7 @@ document.getElementById("searchInput").addEventListener("keyup", (e) => {
     }
 })
 
-
-// total of wealth, showing in the footer
-//  total weathof billionaires showed in the table body
-
-
-
+//  Calculate total wealth
 const totalWealth = () => {
     let sum = 0;
     let table = document.getElementById("tableBody")
@@ -151,11 +182,20 @@ const totalWealth = () => {
     document.getElementById("total").innerText = `${sum.toFixed(2)}`
 
 }
-
+//  Start total wealth calculation
 const startTotalCount = () => {
     document.getElementById("total").innerText = "Calculating..."
-setTimeout(() => {
-    totalWealth()
-}, 1000);
+    setTimeout(() => {
+        totalWealth()
+    }, 1000);
 }
 startTotalCount()
+
+//  Sort by name
+document.getElementById("sortByName").addEventListener("click", () => {
+    sortByNames(sort)
+})
+const sortByNames = (data) => {
+    let sortedData = data.sort((a, b) => a.person.name.localeCompare(b.person.name))
+    return sortedData
+}
