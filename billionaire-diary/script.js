@@ -1,22 +1,72 @@
 const username = document.getElementById("username")
-const getUserName = prompt("Please enter username first to continue: ")
-if (getUserName === null || getUserName === "") {
-    alert("Please enter a valid username")
-    window.location.reload()
+// const getUserName = prompt("Please enter username first to continue: ")
+// if (getUserName === null || getUserName === "") {
+//     alert("Please enter a valid username")
+//     window.location.reload()
+// }
+// if (getUserName) {
+//     username.innerText = getUserName;
+
+// } else {
+//     alert("Please enter a username")
+//     window.location.reload()
+// }
+
+const fetchData = async type => {
+    let url = "./api/Richest_People_API.json"
+    let url2 = "./api/AllBillionaires.json"
+    const response = await fetch(url);
+    const data = await response.json();
+    showTopRich(data)
 }
-if (getUserName) {
-    username.innerText = getUserName;
-        (async function () {
-            try {
-                const url = "https://forbes400.onrender.com/api/forbes400/"
-                const res = await fetch(url);
-                const data = await res.json()
-                console.log(data)
-            } catch (error) {
-                console.log(error);
-            }
-        }())
-} else {
-    alert("Please enter a username")
-    window.location.reload()
+fetchData()
+
+function showTopRich(data) {
+    data = data.slice(0, 3)
+    for (const person of data) {
+        document.getElementById("tableBody").innerHTML += `
+        
+        <tr>
+            <td>
+                <div class="flex items-center space-x-3">
+                    <div class="avatar">
+                        <div class="mask mask-squircle w-12 h-12">
+                            <img src="${person.person.squareImage.slice(0, 6) === "https:" ? person.person.squareImage : "https:" + person.person.squareImage.slice(1)}"
+                                alt="Avatar" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-bold">${person.person.name} <label for="my-modal-3" onclick="showDetails(${person.rank})"><i class="fa fa-eye cursor-pointer ml-2" aria-hidden="true"></i></label></div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                ${person.countryOfCitizenship}
+            </td>
+            <td>
+            ${person.industries[0]}
+            </td>
+            <td>
+            ${person.rank}
+            </td>
+            <th>
+                $${person.finalWorth}
+            </th>
+        </tr>                        
+        `
+    }
+}
+
+const showDetails = (rank) => {
+    let url = "./api/AllBillionaires.json"
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            let person = data.find(person => person.rank === rank)
+            console.log(person);
+            document.querySelector("#detailsCard").children[0].children[0].innerText = person.person.name
+            document.querySelector("#detailsCard").children[0].children[2].innerText = person.bio ? person.bio : "No biography available"
+            document.querySelector("#detailsCard").children[1].children[0].children[0].src = `${person.squareImage.slice(0, 6) === "https:" ? person.squareImage
+            : "https:" + person.squareImage.slice(1)}`
+        })
 }

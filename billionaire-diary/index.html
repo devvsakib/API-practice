@@ -10,7 +10,9 @@
     <meta name="author" content="DevvSakib">
     <title>DevvSakib</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="./script.js"></script>
 </head>
@@ -67,39 +69,13 @@
                             <th>Citizenship</th>
                             <th>Industry</th>
                             <th>Rank</th>
-                            <th>Weath</th>
+                            <th>Wealth</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tableBody">
                         <!-- row 1 -->
-                        <tr>
-                            <td>
-                                <div class="flex items-center space-x-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle w-12 h-12">
-                                            <img src="https://i0.wp.com/www.pngindians.com/football/wp-content/uploads/2022/02/joseph.jpg?resize=300%2C225&ssl=1"
-                                                alt="Avatar" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold">Hart Hagerty <i class="fa fa-eye cursor-pointer ml-2" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                United States
-                            </td>
-                            <td>
-                                Technology
-                            </td>
-                            <td>
-                                1
-                            </td>
-                            <th>
-                                $569456.54
-                            </th>
-                        </tr>
+
                     </tbody>
                     <!-- foot -->
                     <tfoot>
@@ -116,6 +92,33 @@
             </div>
         </div>
     </div>
+
+
+    <!-- modal -->
+    <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box relative">
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <div class="text-center" id="detailsCard">
+                <div>
+                    <h3 class="text-2xl font-bold"></h3>
+                    <p>Biography</p>
+
+                    <p class="py-4">Bio</p>
+                    </p>
+                </div>
+                <div class="flex justify-between">
+                    <div>
+                        <img src="" />
+                    </div>
+                    <div>
+                        <p class="font-bold">Age</p>
+                        <p>${person.age}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
