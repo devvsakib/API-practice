@@ -1,4 +1,7 @@
 const username = document.getElementById("username")
+const allB = "./api/AllBillionaires.json"
+const richest = "./api/Richest_People_API.json"
+
 // const getUserName = prompt("Please enter username first to continue: ")
 // if (getUserName === null || getUserName === "") {
 //     alert("Please enter a valid username")
@@ -12,18 +15,18 @@ const username = document.getElementById("username")
 //     window.location.reload()
 // }
 
-const fetchData = async type => {
-    let url = "./api/Richest_People_API.json"
-    let url2 = "./api/AllBillionaires.json"
-    const response = await fetch(url);
+const fetchData = async (type, cond) => {
+    const response = await fetch(type);
     const data = await response.json();
-    showTopRich(data)
+    showTopRich(data, cond)
 }
-fetchData()
+fetchData(richest)
 
-function showTopRich(data) {
-    data = data.slice(0, 3)
-    for (const person of data) {
+//  Fetch details for Modal 
+function showTopRich(data, all) {
+    const sliceData = data.slice(0, 3)
+    const conditionData = all ? data : sliceData
+    for (const person of conditionData) {
         document.getElementById("tableBody").innerHTML += `
         
         <tr>
@@ -57,6 +60,7 @@ function showTopRich(data) {
     }
 }
 
+// find the person from allBillionaires api
 const showDetails = (rank) => {
     let url = "./api/AllBillionaires.json"
     fetch(url)
@@ -84,7 +88,15 @@ const showDetails = (rank) => {
         })
 }
 
+// convert miliseconds to date
 const bday = day => {
     let date = new Date(day)
     return date.toDateString()
 }
+
+// Show all billionaires
+
+document.getElementById("allBillionaires").addEventListener("click", () => {
+    document.getElementById("tableBody").innerHTML = ""
+    fetchData(allB, true)
+})
