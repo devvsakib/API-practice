@@ -24,13 +24,14 @@ fetchData(richest)
 
 //  Fetch details for Modal 
 function showTopRich(data, all) {
-    const sliceData = data.slice(0, 3)
+    const sliceData = data.slice(0, 5)
     const conditionData = all ? data : sliceData
+    document.getElementById("tableBody").innerHTML = ""
     for (const person of conditionData) {
         document.getElementById("tableBody").innerHTML += `
         
         <tr>
-            <td>
+            <td class="break-words whitespace-normal">
                 <div class="flex items-center space-x-3">
                     <div class="avatar">
                         <div class="mask mask-squircle w-12 h-12">
@@ -39,7 +40,7 @@ function showTopRich(data, all) {
                         </div>
                     </div>
                     <div>
-                        <div class="font-bold">${person.person.name} <label for="my-modal-3" onclick="showDetails(${person.rank})"><i class="fa fa-eye cursor-pointer ml-2" aria-hidden="true"></i></label></div>
+                        <div class="font-bold flex"><h2>${person.person.name}</h2> <label for="my-modal-3" onclick="showDetails(${person.rank})"><i class="fa fa-eye cursor-pointer ml-2" aria-hidden="true"></i></label></div>
                     </div>
                 </div>
             </td>
@@ -53,7 +54,7 @@ function showTopRich(data, all) {
             ${person.rank}
             </td>
             <th>
-                $${person.finalWorth}
+                $<span>${person.finalWorth}</span>
             </th>
         </tr>                        
         `
@@ -95,8 +96,66 @@ const bday = day => {
 }
 
 // Show all billionaires
-
 document.getElementById("allBillionaires").addEventListener("click", () => {
     document.getElementById("tableBody").innerHTML = ""
+    document.getElementById("tableBody").innerHTML = "Loading..."
+    document.getElementById("allBillionaires").classList.add("hidden")
+    document.getElementById("showTop5").classList.remove("hidden")
     fetchData(allB, true)
+    startTotalCount()
 })
+
+//  Show top 5 richest again
+document.getElementById("showTop5").addEventListener("click", () => {
+    document.getElementById("tableBody").innerHTML = ""
+    document.getElementById("tableBody").innerHTML = "Loading..."
+    document.getElementById("allBillionaires").classList.remove("hidden")
+    document.getElementById("showTop5").classList.add("hidden")
+    fetchData(richest)
+    startTotalCount()
+})
+
+// Search for a billionaire
+document.getElementById("searchInput").addEventListener("keyup", (e) => {
+    let search = e.target.value.toLowerCase()
+    let table = document.getElementById("tableBody")
+    let tr = table.getElementsByTagName("tr")
+    for (const trElement of tr) {
+        let td = trElement.getElementsByTagName("td")[0]
+        if (td) {
+            let textValue = td.textContent || td.innerText
+
+            textValue.toLowerCase().indexOf(search) > -1 ? trElement.style.display = "" : trElement.style.display = "none"
+            // how it works? ans: it returns the index of the search value in the textValue. if it is not found it returns -1. so if it is greater than -1 it means it is found. Example: textValue = "Hello World" search = "world" textValue.indexOf(search) = 6
+
+        }
+    }
+})
+
+
+// total of wealth, showing in the footer
+//  total weathof billionaires showed in the table body
+
+
+
+const totalWealth = () => {
+    let sum = 0;
+    let table = document.getElementById("tableBody")
+    let tr = table.getElementsByTagName("tr")
+    for (const rr of tr) {
+        let td = rr.getElementsByTagName("th")[0].children[0].innerText
+        if (td) {
+            sum += parseFloat(td)
+        }
+    }
+    document.getElementById("total").innerText = `${sum.toFixed(2)}`
+
+}
+
+const startTotalCount = () => {
+    document.getElementById("total").innerText = "Calculating..."
+setTimeout(() => {
+    totalWealth()
+}, 1000);
+}
+startTotalCount()

@@ -45,6 +45,7 @@
                     <div class="grid card bg-base-300 rounded-box place-items-center">
                         <ul class="menu p-4 w-80 bg-base-100 text-base-content">
                             <li><button class="btn mb-3" id="allBillionaires">All Billionaires</button></li>
+                            <li><button class="btn mb-3 hidden" id="showTop5">Show Top 5</button></li>
                             <li><button class="btn mb-3">Richest by industry (Tech)</button></li>
                             <li><button class="btn mb-3">Richest by states (Texas)</button></li>
                         </ul>
@@ -54,7 +55,7 @@
         </div>
         <div class="mt-10 w-[98%] flex flex-col col-span-2 items-start justify-start">
             <nav class="">
-                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs devv-input" />
+                <input type="text" id="searchInput" placeholder="Type here" class="input input-bordered w-full max-w-xs devv-input" />
             </nav>
 
             <div class="my-4">
@@ -84,7 +85,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>$2340324234</th>
+                            <th>$<span id="total"></span></th>
                         </tr>
                     </tfoot>
 
