@@ -97,23 +97,36 @@
     <!-- modal -->
     <input type="checkbox" id="my-modal-3" class="modal-toggle" />
     <div class="modal">
-        <div class="modal-box relative">
+        <div class="relative bg-black p-5 h-[95vh] w-[80%] mx-auto overflow-y-scroll">
             <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <div class="text-center" id="detailsCard">
-                <div>
-                    <h3 class="text-2xl font-bold"></h3>
+            <div class="text-left" id="detailsCard">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold">Jeff Bozes</h3>
                     <p>Biography</p>
 
                     <p class="py-4">Bio</p>
                     </p>
                 </div>
-                <div class="flex justify-between">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <img src="" />
+                        <img class="rounded w-4/5 mb-2" src="https://specials-images.forbesimg.com/imageserve/5bb22ae84bbe6f67d2e82e05/416x416.jpg?background=000000&cropX1=627&cropX2=1639&cropY1=129&cropY2=1142" />
+                        <p><b>Source: </b><span></span></p>
                     </div>
                     <div>
-                        <p class="font-bold">Age</p>
-                        <p>${person.age}</p>
+                        <div>
+                            <h2 class="font-bold text-center text-2xl">General Information</h2>
+                            <hr>
+                            <div id="generalInfo">
+                                
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-center text-2xl">Wealth Information</h2>
+                            <hr>
+                            <div id="wealthInfo">
+                               
+                            </div>
+                        </div>
                     </div>
 
                 </div>
