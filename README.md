@@ -12,3 +12,6 @@
 
 ### P7a
 [MobileAPI](https://devvsakib.github.io/API-practice/mobileAPI)
+
+### billionaire-diary
+[MobileAPI](https://devvsakib.github.io/API-practice/billionaire-diary)
