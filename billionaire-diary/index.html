@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rest Countries API">
+    <meta name="keywords" content="Rest Countries API">
+    <meta name="author" content="DevvSakib">
+    <title>DevvSakib</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="./script.js"></script>
+</head>
+
+<body class="grid justify-center h-[100vh] w-[100vw]">
+    <div class="grid grid-cols-1 md:grid-cols-3 justify-between w-[95vw] mx-5">
+        <div class="drawer drawer-mobile">
+            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+
+            <div class="drawer">
+                <label for="my-drawer-2" class="drawer-overlay"></label>
+
+                <div class="flex flex-col w-full">
+                    <div class="grid card bg-base-300 rounded-box place-items-center">
+                        <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+                            <!-- Sidebar content here -->
+                            <li>
+                                <div class="flex flex-col mb-3">
+                                    <h1 class="uppercase text-2xl font-bold -mb-3">Billionaire</h1>
+                                    <p>Dairy</p>
+                                </div>
+                            </li>
+                            <li><button class="btn mb-3">Add a user</button></li>
+                            <li><button class="btn mb-3">Double money</button></li>
+                            <li><button class="btn mb-3">Sort By Rank</button></li>
+                            <li><button class="btn mb-3">Calculate Entire Wealth</button></li>
+                        </ul>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="grid card bg-base-300 rounded-box place-items-center">
+                        <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+                            <li><button class="btn mb-3">All Billionaires</button></li>
+                            <li><button class="btn mb-3">Richest by industry (Tech)</button></li>
+                            <li><button class="btn mb-3">Richest by states (Texas)</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-10 w-[100%] flex flex-col col-span-2 items-start justify-start">
+            <nav class="">
+                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs devv-input" />
+            </nav>
+
+            <div class="my-4">
+                <h2>Hello, <span id="username">user</span>!</h2>
+            </div>
+            <div class="overflow-x-auto w-full">
+                <table class="table w-full">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Citizenship</th>
+                            <th>Industry</th>
+                            <th>Rank</th>
+                            <th>Weath</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row 1 -->
+                        <tr>
+                            <td>
+                                <div class="flex items-center space-x-3">
+                                    <div class="avatar">
+                                        <div class="mask mask-squircle w-12 h-12">
+                                            <img src="https://i0.wp.com/www.pngindians.com/football/wp-content/uploads/2022/02/joseph.jpg?resize=300%2C225&ssl=1"
+                                                alt="Avatar" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold">Hart Hagerty <i class="fa fa-eye cursor-pointer ml-2" aria-hidden="true"></i></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                United States
+                            </td>
+                            <td>
+                                Technology
+                            </td>
+                            <td>
+                                1
+                            </td>
+                            <th>
+                                $569456.54
+                            </th>
+                        </tr>
+                    </tbody>
+                    <!-- foot -->
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>$2340324234</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- DevvSakib | Follow on GITHUBL for more : github.com/devvsakib -->
