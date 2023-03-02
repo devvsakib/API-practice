@@ -1,7 +1,9 @@
-const username = document.getElementById("username")
-const allB = "./api/AllBillionaires.json"
-const richest = "./api/Richest_People_API.json"
-let sort;
+const username = document.getElementById("username"),
+    allB = "./api/AllBillionaires.json",
+    allByInd = "./api/ByIndustryTechnology.json",
+    richest = "./api/Richest_People_API.json",
+    showInTable = document.getElementById("showTable"),
+    showInCard = document.getElementById("showCard");
 // const getUserName = prompt("Please enter username first to continue: ")
 // if (getUserName === null || getUserName === "") {
 //     alert("Please enter a valid username")
@@ -15,10 +17,17 @@ let sort;
 //     window.location.reload()
 // }
 
-const fetchData = async (type, cond) => {
+const fetchData = async (type, cond, name) => {
+
     const response = await fetch(type);
     const data = await response.json();
-    showTopRich(data, cond)
+    if (name === "industry") {
+        showByIndustry(data, cond)
+    } else if (name = "") {
+
+    } else {
+        showTopRich(data, cond)
+    }
 }
 fetchData(richest)
 
@@ -198,4 +207,46 @@ document.getElementById("sortByName").addEventListener("click", () => {
 const sortByNames = (data) => {
     let sortedData = data.sort((a, b) => a.person.name.localeCompare(b.person.name))
     return sortedData
+}
+
+//  Show by tech industry in card
+const showByIndustry = (industry, cond) => {
+    industry = cond ? industry.slice(0, 6) : industry
+    for (const person of industry) {
+        console.log(person);
+        document.getElementById("showcraddetails").innerHTML += `
+    <div class="mt-4 mx-3">
+        <div>
+            <h2 class="text-2xl font-bold uppercase pb-3 text-center">${person.person.name}</h2>
+        </div>
+        <div class="card card-side bg-base-100 gap-4 grid grid-cols-1 md:grid-cols-2 shadow-xl items-center">
+            <div>
+                <figure class="flex flex-col gap-y-1 text-xs">
+                    <img src=${person.person.squareImage === "undefined" ? null : person.person.squareImage.slice(0, 6) === "https:" ? person.person.squareImage : "https:" + person.person.squareImage.slice(1)} />
+                    <figcaption class="figure-caption"><b>Source: </b>${person.industries[0]}</figcaption>
+                </figure>
+            </div>
+            <div class="card-body border-l-[1px] text-xs">
+                <p><b>Citizenship: </b>${person.countryOfCitizenship}</p>
+                <p><b>State: </b>${person.state ? person.state : "No State Found"}</p>
+                <p><b>City: </b>${person.city}</p>
+                <p><b>Total Shares: </b>$${person.financialAssets === "undefined" ? "Not Found" : person?.financialAssets?.numberOfShares  === "undefined" ? "Not Found" : person?.financialAssets?.numberOfShares}</p>
+                <p><b>Share Price: </b>$${person.financialAssets === "undefined" ? "Not Found" : person?.financialAssets?.sharePrice === "undefined" ? "Not Found" : person?.financialAssets?.sharePrice}</p>
+            </div>
+        </div>
+    </div>    
+    `
+    }
+
+}
+
+document.getElementById("showByIndustry").addEventListener("click", () => {
+    showInTable.classList.add("hidden");
+    showInCard.classList.remove("hidden");
+    fetchData(allByInd, true, "industry")
+})
+
+const showAll = () => {
+    document.getElementById("showcraddetails").innerHTML = ""
+    fetchData(allByInd, false, "industry")
 }

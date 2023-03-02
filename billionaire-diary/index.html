@@ -18,11 +18,11 @@
 </head>
 
 <body class="grid justify-center h-[100vh] w-[100vw]">
-    <div class="grid grid-cols-1 md:grid-cols-3 justify-between w-[95vw] mx-5">
-        <div class="drawer drawer-mobile">
+    <div class="grid grid-cols-1 md:grid-cols-4 justify-between w-[95vw] mx-5 -mt-5">
+        <div class="drawer drawer-mobile w-[250px]">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
 
-            <div class="drawer">
+            <div class="drawer w-auto">
                 <label for="my-drawer-2" class="drawer-overlay"></label>
 
                 <div class="flex flex-col w-full">
@@ -30,66 +30,75 @@
                         <ul class="menu p-4 w-80 bg-base-100 text-base-content">
                             <!-- Sidebar content here -->
                             <li>
-                                <div class="flex flex-col mb-3">
+                                <div class="flex px-0 flex-col mb-3">
                                     <h1 class="uppercase text-2xl font-bold -mb-3">Billionaire</h1>
                                     <p>Dairy</p>
                                 </div>
                             </li>
-                            <li><button class="btn mb-3">Add a user</button></li>
-                            <li><button class="btn mb-3">Double money</button></li>
-                            <li><button class="btn mb-3" id="sortByName">Sort By Name</button></li>
-                            <li><button class="btn mb-3">Calculate Entire Wealth</button></li>
+                            <li><button class="px-2 mb-3">Add a user</button></li>
+                            <li><button class="px-2 mb-3">Double money</button></li>
+                            <li><button class="px-2 mb-3" id="sortByName">Sort By Name</button></li>
+                            <li><button class="px-2 mb-3">Calculate Entire Wealth</button></li>
                         </ul>
                     </div>
                     <div class="divider"></div>
                     <div class="grid card bg-base-300 rounded-box place-items-center">
                         <ul class="menu p-4 w-80 bg-base-100 text-base-content">
-                            <li><button class="btn mb-3" id="allBillionaires">All Billionaires</button></li>
-                            <li><button class="btn mb-3 hidden" id="showTop5">Show Top 5</button></li>
-                            <li><button class="btn mb-3">Richest by industry (Tech)</button></li>
-                            <li><button class="btn mb-3">Richest by states (Texas)</button></li>
+                            <li><button class="px-2 mb-3" id="allBillionaires">All Billionaires</button></li>
+                            <li><button class="px-2 mb-3 hidden" id="showTop5">Show Top 5</button></li>
+                            <li><button class="px-2 mb-3" id="showByIndustry">Richest by industry (Tech)</button></li>
+                            <li><button class="px-2 mb-3">Richest by states (Texas)</button></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-10 w-[98%] flex flex-col col-span-2 items-start justify-start">
-            <nav class="">
-                <input type="text" id="searchInput" placeholder="Type here" class="input input-bordered w-full max-w-xs devv-input" />
-            </nav>
+        <div class="mt-10 w-[98%] flex flex-col col-span-3 items-start justify-start">
+            <div id="showTable" class="">
+                <nav class="">
+                    <input type="text" id="searchInput" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs devv-input" />
+                </nav>
 
-            <div class="my-4">
-                <h2>Hello, <span id="username">user</span>!</h2>
+                <div class="my-4">
+                    <h2>Hello, <span id="username">user</span>!</h2>
+                </div>
+                <div class="overflow-x-auto w-full">
+                    <table class="table w-full">
+                        <!-- head -->
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Citizenship</th>
+                                <th>Industry</th>
+                                <th>Rank</th>
+                                <th>Wealth</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- row 1 -->
+
+                        </tbody>
+                        <!-- foot -->
+                        <tfoot>
+                            <tr>
+                                <th>Total</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>$<span id="total"></span></th>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
             </div>
-            <div class="overflow-x-auto w-full">
-                <table class="table w-full">
-                    <!-- head -->
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Citizenship</th>
-                            <th>Industry</th>
-                            <th>Rank</th>
-                            <th>Wealth</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- row 1 -->
+            <div id="showCard" class="hidden">
+                <div id="showcraddetails" class="grid grid-cols-1 md:grid-cols-3">
 
-                    </tbody>
-                    <!-- foot -->
-                    <tfoot>
-                        <tr>
-                            <th>Total</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>$<span id="total"></span></th>
-                        </tr>
-                    </tfoot>
-
-                </table>
+                </div>
+                <button class="btn mx-auto text-center my-5" onclick="showAll()">Load More</button>
             </div>
         </div>
     </div>
@@ -110,7 +119,8 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <img class="rounded w-4/5 mb-2" src="https://specials-images.forbesimg.com/imageserve/5bb22ae84bbe6f67d2e82e05/416x416.jpg?background=000000&cropX1=627&cropX2=1639&cropY1=129&cropY2=1142" />
+                        <img class="rounded w-4/5 mb-2"
+                            src="https://specials-images.forbesimg.com/imageserve/5bb22ae84bbe6f67d2e82e05/416x416.jpg?background=000000&cropX1=627&cropX2=1639&cropY1=129&cropY2=1142" />
                         <p><b>Source: </b><span></span></p>
                     </div>
                     <div>
@@ -118,14 +128,14 @@
                             <h2 class="font-bold text-center text-2xl">General Information</h2>
                             <hr>
                             <div id="generalInfo">
-                                
+
                             </div>
                         </div>
                         <div>
                             <h2 class="font-bold text-center text-2xl">Wealth Information</h2>
                             <hr>
                             <div id="wealthInfo">
-                               
+
                             </div>
                         </div>
                     </div>
