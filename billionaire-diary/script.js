@@ -18,7 +18,6 @@ const username = document.getElementById("username"),
 // }
 
 const fetchData = async (type, cond, name) => {
-
     const response = await fetch(type);
     const data = await response.json();
     if (name === "industry") {
@@ -26,7 +25,7 @@ const fetchData = async (type, cond, name) => {
     } else if (name = "") {
 
     } else {
-        showTopRich(data, cond)
+        showTopRich(data, cond, name)
     }
 }
 fetchData(richest)
@@ -142,6 +141,8 @@ const bday = day => {
 
 // Show all billionaires
 document.getElementById("allBillionaires").addEventListener("click", () => {
+    showInTable.classList.remove("hidden");
+    showInCard.classList.add("hidden");
     document.getElementById("tableBody").innerHTML = ""
     document.getElementById("tableBody").innerHTML = "Loading..."
     document.getElementById("allBillionaires").classList.add("hidden")
